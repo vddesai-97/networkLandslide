@@ -8,7 +8,7 @@ This package creates a geospatial network using poisson sampling and delaunay Tr
 
 ## Plot
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![alt text](https://github.com/vddesai-97/netLandslide/src/ExploratoryPlot.pdf "Exploratory Plot")
 
 
 
