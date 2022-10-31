@@ -8,7 +8,7 @@ This package creates a geospatial network using poisson sampling and delaunay Tr
 
 ## Plot
 
-![alt text](https://github.com/vddesai-97/netLandslide/src/ExploratoryPlot.pdf "Exploratory Plot")
+![alt text](https://github.com/vddesai-97/netLandslide/src/FinalExp.pdf "Exploratory Plot")
 
 
 
