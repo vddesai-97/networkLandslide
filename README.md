@@ -15,14 +15,16 @@ This network contains three types of information:
 Community detection will then take this network and detect clusters of nodes (patches of areas) that are similar to each other, close together, and whose weights are above average.
 
 ## Steps to creating a multilayer network:
-1. Using a DEM map as input, <i>gridbyDEM.R</i> returns a grid and edge list by using poisson disk sampling and then removing boundary effects.
+<ol>
+  <li> Using a DEM map as input, <i>gridbyDEM.R</i> returns a grid and edge list by using poisson disk sampling and then removing boundary effects.
 <ul>
 <li> grid contains points and the coordinates of those points
 <li> edge list is an E x 2 matrix where each row contans an edge (where the total number of edges is E) and the columns contains the ID of pair of nodes
 </ul>
-2. Calculate the weights of each edge -- relative velocity and slope -- using <i>vel_weights.R</i> and <i>slope_weights.R</i>
-3. Input the weights into <i>multilayer_network.R</i> that will output an edge list, E X (2+T), where each column (<i>2+t</i>) corresponds to a time layer.
-4. Run the edgelist into <i>multilayerCommDet.m</i> which runs in Matlab. This outputs a N X T matrix where each column represents a time layer and each row corresponds to a node.
+<li> Calculate the weights of each edge -- relative velocity and slope -- using <i>vel_weights.R</i> and <i>slope_weights.R</i>
+<li> Input the weights into <i>multilayer_network.R</i> that will output an edge list, E X (2+T), where each column (<i>2+t</i>) corresponds to a time layer.
+<li>Run the edgelist into <i>multilayerCommDet.m</i> which runs in Matlab. This outputs a N X T matrix where each column represents a time layer and each row corresponds to a node.
+  </ol>
 
 
 ## Plot
