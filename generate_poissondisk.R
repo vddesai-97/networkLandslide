@@ -4,7 +4,7 @@
 #'
 #' This will generate a grid of N points based on the area of interest.
 #' Implements a newwer version of Bridson's Poisson Disk Sampling fast algorithm.
-generate_poissondisk <- function(mindist, k, e){
+generate_poissondisk <- function(mindist, k, e, raster_dem, ...){
   #Width and height of the area of interest
   #mindist is the minimum distance (or radius) between samples
   #k is the limit of samples to choose before rejection
@@ -12,7 +12,7 @@ generate_poissondisk <- function(mindist, k, e){
 
 ##Define the minimum coordinates, height, and width for the area
   #Bounds of the geophysical map
-  box <- extent(DEM) + c(-e,e,-e,e) #extending the boundary to remove hte boundary effects from within the AOI
+  box <- extent(raster_dem) + c(-e,e,-e,e) #extending the boundary to remove hte boundary effects from within the AOI
   height <- abs(box[4]-box[3]) #ymax-ymin
   width <- abs(box[2]-box[1])  #xmax - xmin
 
@@ -27,7 +27,7 @@ generate_poissondisk <- function(mindist, k, e){
 ##and intialize an array of sample indices (or active list)
   #random point that is within the area of interest
   active = list()
-  x0 <- dplyr::slice(data.frame(coordinates(DEM)),n=1) #coordinates
+  x0 <- dplyr::slice(data.frame(coordinates(raster_dem)),n=1) #coordinates
   #Displace the position by xmin and ymin
   x0 <- c(abs(x0$x - box[1]), abs(x0$y - box[3]))
   i <- floor(x0[1]/cellsize) + 1 #column index

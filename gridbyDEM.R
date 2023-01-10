@@ -5,19 +5,18 @@
 #' Removes boundary condition as well.
 #' Outputs grid and edge list
 
-gridbyDEM <- function(j, area,t,n,... ){
+gridbyDEM <- function(j, raster_dem,n,crs,... ){
   #j is the minimum distance of seperation between nodes
-  #area is name of the DEM file to based the grid off of
-  #t is how many layers (or time steps) are we looking at
+  #raster_dem is name of the DEM file to based the grid off of
   #n is the grid number
 
   ##Poisson Disk
   #distance at which to extend from the original boundary
   e = 500
   #Create grid of points
-  grid <- generate_poissondisk(j,k=20, e)
+  grid <- generate_poissondisk(j,k=20, e, raster_dem)
   #Displace the points from (0,0) to xmin and ymin of the area
-  box <- extent(DEM) + c(-e,e,-e,e) #amount displaced in the poisson function
+  box <- extent(raster_dem) + c(-e,e,-e,e) #amount displaced in the poisson function
   grid$x <- grid$x + box[1]
   grid$y <- grid$y + box[3]
 
@@ -25,13 +24,13 @@ gridbyDEM <- function(j, area,t,n,... ){
   #First transform to spatial points
   coordinates(grid) <- ~x+y
   #Assign proper CRS
-  proj4string(grid) <- CRS(utm)
+  proj4string(grid) <- CRS(crs)
   #Properly name the rows of the grid
   row.names(grid) <- 1:length(grid)
 
 
   ##Spatial Data Frame for the grid
-  aoi_grid <- raster::extract(DEM, grid, buffer = 20, fun = mean, sp = TRUE)
+  aoi_grid <- raster::extract(raster_dem, grid, buffer = 20, fun = mean, sp = TRUE)
 
 
   ##Delauney Triangulation
