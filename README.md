@@ -26,10 +26,10 @@ The DEM and displacment maps need to be rasters and have the same extent and pro
 
 ## Steps to creating a multilayer network:
 <ol>
-<li> Using a DEM map as input, <i>gridbyDEM.R</i> returns a grid and edge list by using poisson disk sampling and then removing boundary effects.
+<li> Using a DEM map as input, <i>gridbyDEM.R</i> returns a <i>grid_*</i> and <i>edges_*</i> list by using poisson disk sampling and then removing boundary effects.
 <li> Calculate the weights of each edge -- relative velocity and slope -- using <i>vel_weights.R</i> and <i>slope_weights.R</i>
-<li> Input the weights into <i>multilayer_network.R</i> that will output an edge list, E X (2+T), where each column (<i>2+t</i>) corresponds to a time layer <i>t</i> for a total of <i>T</i> layers.
-<li> Run the edgelist into <i>multilayerCommDet.m</i> which runs in Matlab. This outputs a N X T matrix where each column represents a time layer and each row corresponds to a node.
+<li> Input the weights into <i>multilayer_network.R</i> that will output the network as an edge list, <i>edgemat</i>.
+  <li> Run the edgelist into <i>multilayerCommDet.m</i> which runs in Matlab. This outputs <i>CA</i>, a N X T matrix where each column represents a time layer and each row corresponds to a node.
 </ol>
 
 ## Outputs:
