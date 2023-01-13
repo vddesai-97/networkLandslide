@@ -3,7 +3,7 @@
 #' Computes weights for edges using .tif files fo displacement
 #' and using a vector with time between each .tif file
 #'
-slope_edge <- function(dem, edges, grid){
+slope_edge <- function(dem, grid, edges, ...){
   # dem is digital elevation model raster
 
 ##DEM
