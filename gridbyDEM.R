@@ -41,7 +41,7 @@ gridbyDEM <- function(j, raster_dem,n,crs,... ){
 
   ##Removal of Boundary Nodes and Edges
   #Determine the points that are inside the area
-  pnts_keep <- sp.na.omit(aoi_grid)
+  pnts_keep <- aoi_grid[!is.na(aoi_grid$layer),]
   pnts_removal <- over(aoi_grid, pnts_keep)
   #Retrieve the ID of the points outside of the AOI
   id_rm <- which(is.na(pnts_removal[,1]))
