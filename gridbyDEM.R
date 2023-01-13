@@ -63,6 +63,9 @@ gridbyDEM <- function(j, raster_dem,n,crs,... ){
     edges[i,1] <- which(id_keep$ID == a)
     edges[i,2] <- which(id_keep$ID == b)
   }
+  
+  #Remove information from grid
+  aoi_grid <- aoi_grid[,-1]
 
   #Assign labels to the aoi_grid
   assign(paste('grid_',n,sep=""), aoi_grid,envir = .GlobalEnv)
