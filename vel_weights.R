@@ -3,7 +3,7 @@
 #' Computes weights for edges using .tif files fo displacement
 #' and using a vector with time between each .tif file
 #'
-vel_edge <- function(maindir, delta_time, edges, grid){
+vel_edge <- function(maindir, delta_time, grid, edges, ...){
   # delta_time is a vector with time difference between each layer
   # edges is edge list
   # tsteps is number of layers
