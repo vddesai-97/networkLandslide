@@ -14,21 +14,33 @@ This network contains three types of information:
 
 Community detection will then take this network and detect clusters of nodes (patches of areas) that are similar to each other, close together, and whose weights are above average.
 
+## Plot
+![alt text](https://github.com/vddesai-97/netLandslide/blob/main/src/ExploratoryPlot.png "Exploratory Plot")
+## Inputs:
+<ul>
+<li> DEM 
+<li> Time-series displacement maps with <i>T</i> layers
+</ul>
+
+The DEM and displacment maps need to be rasters and have the same extent and projection. I normally use <i>utm</i> coordinates since displacement is normally in meters.
+
 ## Steps to creating a multilayer network:
 <ol>
 <li> Using a DEM map as input, <i>gridbyDEM.R</i> returns a grid and edge list by using poisson disk sampling and then removing boundary effects.
-<ul>
-  <li> grid contains <i>N</i> nodes and the coordinates of those nodes
-  <li> edge list is a E X 2 matrix for <i>E</i> edges, where the columns corresponds to the ID of the two nodes that are connected for each edge
-</ul>
 <li> Calculate the weights of each edge -- relative velocity and slope -- using <i>vel_weights.R</i> and <i>slope_weights.R</i>
 <li> Input the weights into <i>multilayer_network.R</i> that will output an edge list, E X (2+T), where each column (<i>2+t</i>) corresponds to a time layer <i>t</i> for a total of <i>T</i> layers.
-<li>Run the edgelist into <i>multilayerCommDet.m</i> which runs in Matlab. This outputs a N X T matrix where each column represents a time layer and each row corresponds to a node.
+<li> Run the edgelist into <i>multilayerCommDet.m</i> which runs in Matlab. This outputs a N X T matrix where each column represents a time layer and each row corresponds to a node.
 </ol>
 
-
-## Plot
-![alt text](https://github.com/vddesai-97/netLandslide/blob/main/src/ExploratoryPlot.png "Exploratory Plot")
+## Outputs:
+<ul>
+<li> <i>grid_*</i> is a spatial grid with coordinates for each node <i>n</i> for a total of <i>N</i> nodes.
+<li> <i>edges_*</i> is an E x 2 matrix, where each row is some edge <i>e</i> and [e,1] and [e,2] are the node IDs for that edge connection
+<li> <i>avg_vel</i> is an E x T matrix where each column corresponds to a time layer <i>t</i>in the time-series displacement maps
+<li> <i>node_slope</i> is an E X 1 matric where for each edge, the computed slope is calculated
+<li> <i>edgemat</i> returnes an E X (2+T) matrix corresponding to the multilayer network, where [e,1] and [e,2] are the node IDS and [e, 2+t] is the edge weights for time layer <i>t</i>
+<li> <i>CA</i> is a N X T matrix, where for each [n,t], the community ID is listed
+</ul>
 
 
 
