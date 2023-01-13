@@ -3,10 +3,8 @@
 #' Computes weights for edges using .tif files fo displacement
 #' and using a vector with time between each .tif file
 #'
-slope_edge <- function(dem, edges, grid, tsteps){
-  # delta_time is a vector with time difference between each layer
-  # edges is edge list
-  # tsteps is number of layers
+slope_edge <- function(dem, edges, grid){
+  # dem is digital elevation model raster
 
 ##DEM
   #Spatial Grid with elevation values extracted for each grid point using a mean with buffer radius

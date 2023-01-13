@@ -3,14 +3,17 @@
 #' Computes weights for edges using .tif files fo displacement
 #' and using a vector with time between each .tif file
 #'
-vel_edge <- function(vel_file, delta_time, edges, grid, tsteps){
+vel_edge <- function(maindir, delta_time, edges, grid){
   # delta_time is a vector with time difference between each layer
   # edges is edge list
   # tsteps is number of layers
 
 ##Time Series Displacement
+  file <- file.path(maindir,'TimeSeries')
+  layers <- length(list.files(file))
+  tsteps <<- layers - 1
   #Retrieve Displacement
-  for (t in 1:(tsteps+1)) {
+  for (t in 1:layers) {
     #conversion of file
     disp <- crop(projectRaster(raster::stack(paste(file, '/T_', t,'.tif', sep='')), crs = CRS(utm)), DEM)
     #gaussian smoothing
