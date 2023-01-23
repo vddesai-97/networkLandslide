@@ -3,7 +3,7 @@
 Please cite this code as "Desai, Vrinda, Farnaz Fazelpour, Alexander L. Handwerger, and Karen E. Daniels. “Forecasting Landslides Using Community Detection on Geophysical Satellite Data,”  2022. https://doi.org/10.48550/ARXIV.2212.12038."
 
 ## Contents: 
-This package creates a geospatial network using poisson sampling and delaunay Triangulation. It takes information that you supply (ex. rasters of DEMs and displacement time series) and outputs a multilayer network. This multilayer network can then be run into a community detection algorithm, specifically GenLouvain (CITE/LINK), with specifications that you provide to output communities. In this package, there is code to run the community detection algorithm as well.
+This package creates a geospatial network using poisson sampling and delaunay Triangulation. It takes information that you supply (ex. rasters of DEMs and displacement time series) and outputs a multilayer network. This multilayer network can then be run into a community detection algorithm, specifically GenLouvain [1], with specifications that you provide to output communities. In this package, there is code to run the community detection algorithm as well.
 
 This network contains three types of information:
 <ul>
@@ -42,6 +42,7 @@ The DEM and displacment maps need to be rasters and have the same extent and pro
 <li> <i>CA</i> is a N X T matrix, where for each [n,t], the community ID is listed
 </ul>
 
-
+## References
+[1] Lucas G. S. Jeub, Marya Bazzi, Inderjit S. Jutla, and Peter J. Mucha, "A generalized Louvain method for community detection implemented in MATLAB," http://netwiki.amath.unc.edu/GenLouvain, https://github.com/GenLouvain/GenLouvain (2011-2019).
 
 
