@@ -30,7 +30,7 @@ for s=1:TC
 end
 
         
-D = D + omega*spdiags(ones(NC*TC,2),[-NC,NC],NC*TC,NC*TC);
+D = B + omega*spdiags(ones(NC*TC,2),[-NC,NC],NC*TC,NC*TC);
 [S,Q] = genlouvain(D);
 CA = reshape(S,NC,TC); 
 
